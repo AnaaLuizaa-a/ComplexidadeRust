@@ -1,20 +1,22 @@
-pub fn somar_lista(lista: &[i32]) -> Option<i32>{
-    if lista.is_empty() {
-        None
-    
-    } else {
-        let mut soma = 0;
-        for numero in lista {
-            soma += numero;
+pub fn busca_binaria(lista: &[i32], alvo: i32) -> Option<usize> {
+    let mut esquerda: isize = 0;
+    let mut direita: isize = (lista.len() as isize) - 1;
+
+    while esquerda <= direita {
+        let meio = esquerda + direita / 2;
+        if lista[meio as usize] == alvo {
+            return Some(meio as usize);
+        } else if lista[meio as usize] < alvo {
+            esquerda = meio + 1;
+        } else {
+            direita = meio - 1;
         }
-        Some (soma)
     }
+    None
 }
 
 fn main(){
     let lista = vec![1000, 10000, 1000000];
-    let vazia: Vec<i32> = vec![];
 
-    print!("{:?}", somar_lista(&lista));
-    print!("{:?}", somar_lista(&vazia));
+    print!("{:?}", busca_binaria(&lista,10000));
 }
