@@ -1,22 +1,16 @@
-pub fn busca_binaria(lista: &[i32], alvo: i32) -> Option<usize> {
-    let mut esquerda: isize = 0;
-    let mut direita: isize = (lista.len() as isize) - 1;
-
-    while esquerda <= direita {
-        let meio = esquerda + direita / 2;
-        if lista[meio as usize] == alvo {
-            return Some(meio as usize);
-        } else if lista[meio as usize] < alvo {
-            esquerda = meio + 1;
-        } else {
-            direita = meio - 1;
+pub fn pares_com_soma(lista: &[i32], alvo: i32){
+    for i in 0..lista.len(){
+        for j in (i+1).. lista.len(){
+            if lista[i] + lista[j] == alvo {
+                print!("({}, {}) ", lista[i], lista[j]);
+            }
         }
     }
-    None
+
 }
 
 fn main(){
     let lista = vec![1000, 10000, 1000000];
 
-    print!("{:?}", busca_binaria(&lista,10000));
+    pares_com_soma(&lista, 10000);
 }
